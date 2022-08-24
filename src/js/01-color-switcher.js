@@ -1,6 +1,8 @@
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 };
+
+
 const refs = {
   body: document.querySelector('body'),
   btnStart: document.querySelector("button[data-start]"),
@@ -9,8 +11,10 @@ const refs = {
 
 refs.body.addEventListener('click', colorChanger);
 let timerId = null;
-function colorChanger(event) {
+refs.btnStop.setAttribute('disabled', true);
 
+
+function colorChanger(event) {
   if (event.target === refs.btnStart) {
     refs.btnStart.setAttribute('disabled', true);
     refs.btnStop.removeAttribute('disabled');
@@ -23,5 +27,4 @@ function colorChanger(event) {
     clearInterval(timerId);
   }
 };
-  
 //ТРЕБА ПЕРЕОБІТИ НЕ ВІРНО ВИКОНУЄТЬСЯ
