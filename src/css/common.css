@@ -17,7 +17,7 @@ img {
   max-width: 100%;
 }
 
-button{
+.button_task1 {
   width: 150px;
   height: 50px;
   cursor: pointer;
