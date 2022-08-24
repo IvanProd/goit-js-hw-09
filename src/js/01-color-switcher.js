@@ -13,6 +13,7 @@ function colorChanger(event) {
 
   if (event.target === refs.btnStart) {
     refs.btnStart.setAttribute('disabled', true);
+    refs.btnStop.removeAttribute('disabled');
     timerId = setInterval(() => {
       refs.body.setAttribute('style', `background-color: ${getRandomHexColor()}`);
     }, 1000);
