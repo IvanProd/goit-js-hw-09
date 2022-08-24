@@ -7,18 +7,24 @@ const refs = {
     btnStop: document.querySelector("button[data-stop]"),
 };
 
-refs.body.addEventListener('click', colorChanger);
+refs.btnStart.addEventListener('click', colorChanger);
+refs.btnStop.addEventListener('click', stopColorChange);
+function bodyColors(){
+  refs.body.setAttribute('style', `background-color: ${getRandomHexColor()}`);
+};
 
-function colorChanger(event){
-  
-  if (event.target === refs.btnStart){
-    refs.btnStart.setAttribute ('disabled', true);
-    return timerId = setInterval(() => {
-      refs.body.setAttribute('style', `background-color: ${getRandomHexColor()}`);
-      }, 1000);  
-  }else if (event.target === refs.btnStop){
+function colorChanger(event) {
+  refs.btnStart.setAttribute ('disabled', true);
+  const timerId = setInterval(() => {
+    bodyColors();
+    }, 1000); 
+};
+
+function stopColorChange(event){
     refs.btnStart.removeAttribute ('disabled');
     refs.btnStop.setAttribute ('disabled', true);
     clearInterval(timerId);
-  }
-};
+    console.log('stop',timerId);
+  };
+  
+//ТРЕБА ПЕРЕОБІТИ НЕ ВІРНО ВИКОНУЄТЬСЯ
