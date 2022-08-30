@@ -32,11 +32,12 @@ function turnOnTimer(date){
     //console.log('обрана дата за unix системою', date);
     const curentDate = Date.now();
     //console.log('поточна дата за unix системою',curentDate);
-    if(date > curentDate){
-        refs.startBtn.removeAttribute('disabled');
-    }
-    else if(curentDate >= date ){
+    if(curentDate >= date ){
         alert("Please choose a date in the future");
+        return;
+    }
+    if(date > curentDate ){
+        refs.startBtn.removeAttribute('disabled');
     };
 
     refs.startBtn.addEventListener('click', ()=> {timer.timerCountdown(date)});
