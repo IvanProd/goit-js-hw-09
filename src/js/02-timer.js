@@ -1,16 +1,15 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-import { convertMs, timer } from "./timer_functions";
+import {timer, } from "./timer_functions";
 
 
-const refs = {
+export const refs = {
     inputDate: document.querySelector('#datetime-picker'),
-    countDate: document.querySelectorAll('.field .value'),//можливо буде легше зробити через масив
     startBtn: document.querySelector('button'),
-    day: document.querySelector('.value [data-days]'),
-    hours: document.querySelector('.value [data-hours]'),
-    minutes: document.querySelector('.value [data-minutes]'),
-    seconds: document.querySelector('.value [data-seconds]'),
+    dayV: document.querySelector(' [data-days]'),
+    hourV: document.querySelector(' [data-hours]'),
+    minutV: document.querySelector(' [data-minutes]'),
+    secondV: document.querySelector(' [data-seconds]'),
 };
 
 refs.startBtn.setAttribute('disabled', 'disabled');
@@ -44,5 +43,4 @@ function turnOnTimer(date){
     //timerCountdown(date);
     
 };
-
 

@@ -1,3 +1,5 @@
+import { refs } from "./02-timer";
+
 function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
@@ -6,35 +8,51 @@ function convertMs(ms) {
     const day = hour * 24;
 
     // Remaining days
-    const days = pad(Math.floor(ms / day));
+    const days = addLeadingZero(Math.floor(ms / day));
     // Remaining hours
-    const hours = pad(Math.floor((ms % day) / hour));
+    const hours = addLeadingZero(Math.floor((ms % day) / hour));
     // Remaining minutes
-    const minutes = pad(Math.floor(((ms % day) % hour) / minute));
+    const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
     // Remaining seconds
-    const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
+    const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
 
     return { days, hours, minutes, seconds };
 };
 
+
+//console.log(refs)
+function updateIntrface(value){
+    refs.dayV.textContent = convertMs(value).days;
+    refs.hourV.textContent = convertMs(value).hours;
+    refs.minutV.textContent = convertMs(value).minutes;
+    refs.secondV.textContent = convertMs(value).seconds;
+}
 const timer = {
+    intervalId: null,
+    isActive: false,
     timerCountdown(endDate){
-    
-        const intervalId = setInterval(() => {
+        if(this.isActive){
+            return;
+        }
+
+        this.isActive = true;
+
+        this.intervalId = setInterval(() => {
             const timeDifferent = endDate - Date.now();
-            //console.log('залишок в милісекунда[',timeDifferent);
-            console.log(`${convertMs(timeDifferent).days}:${convertMs(timeDifferent).hours}:${convertMs(timeDifferent).minutes}:${convertMs(timeDifferent).seconds}`);
+            
+            updateIntrface(timeDifferent);
+
             if(timeDifferent < 1000){
-                clearInterval(intervalId);
+                clearInterval(this.intervalId);
             }
+            
         }, 1000);
             
     }
 };
 
-function pad(value){
+function addLeadingZero(value){
     return String(value).padStart(2, '0');
-}
+};
 
- export {convertMs, timerCountdown, timer, pad};   
-
+export {timer, timerCountdown};

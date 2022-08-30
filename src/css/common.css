@@ -26,3 +26,32 @@ img {
   border-bottom: 1px solid #000;
   border-left: 0px;
 }
+
+.button_task2{
+  width: 50px;
+  height: 25px;
+}
+
+.input__date{
+  width:170px;
+  height: 25px;
+  font-size: 15px;
+}
+
+.timer{
+  display: flex;
+  font-size: 30px;
+
+}
+
+.field{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.label{
+  font-size: 15px;
+}
+
