@@ -13,18 +13,19 @@ refs.body.addEventListener('click', colorChanger);
 let timerId = null;
 refs.btnStop.setAttribute('disabled', true);
 
+function btnStateSwitch(added, remove){
+  added.setAttribute('disabled', true);
+  remove.removeAttribute('disabled');
+}
 
 function colorChanger(event) {
   if (event.target === refs.btnStart) {
-    refs.btnStart.setAttribute('disabled', true);
-    refs.btnStop.removeAttribute('disabled');
+    btnStateSwitch(refs.btnStart, refs.btnStop);
     timerId = setInterval(() => {
       refs.body.setAttribute('style', `background-color: ${getRandomHexColor()}`);
     }, 1000);
   } else if (event.target === refs.btnStop) {
-    refs.btnStart.removeAttribute('disabled');
-    refs.btnStop.setAttribute('disabled', true);
+    btnStateSwitch(refs.btnStop, refs.btnStart);
     clearInterval(timerId);
   }
 };
-//ТРЕБА ПЕРЕОБІТИ НЕ ВІРНО ВИКОНУЄТЬСЯ
